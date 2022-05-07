@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+
+
+<robot name="car_with_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  >
+  <xacro:include filename="wheel_a.xacro" />
+  <xacro:include filename="wheel_b.xacro" />
+  <link name="base_link">
+    <inertial>
+      <origin xyz="-0.0161520842614312 -0.00641681156155993 0.0888782755515328" rpy="0 0 0" />
+      <mass value="1.32550759355299" />
+      <inertia ixx="0.00606219444859075" ixy="-4.20802075465927E-06" ixz="-2.63249254295034E-06" iyy="0.00485351580132158" iyz="-3.34412403434482E-07" izz="0.0108486362146556" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/base_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="arm_link1">
+    <inertial>
+      <origin xyz="1.59594559789866E-16 0.000344680265201347 0.0336569647872823" rpy="0 0 0" />
+      <mass value="0.0680882055474283" />
+      <inertia ixx="2.13835885244174E-05" ixy="-3.43351363683703E-21" ixz="-2.72854145135489E-21" iyy="1.93087199952903E-05" iyz="-2.52540738656447E-07" izz="2.434933190014E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint1" type="continuous">
+    <origin xyz="0.0849999999999999 0 0.1035" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="arm_link1" />
+    <axis xyz="0 0 1" />
+  </joint>
+  <link name="arm_link2">
+    <inertial>
+      <origin xyz="0.000800833322218711 -0.00112509286356266 0.0824851502395332" rpy="0 0 0" />
+      <mass value="0.0786656364342817" />
+      <inertia ixx="3.09708443081357E-05" ixy="1.15404323875637E-08" ixz="-1.9786834547787E-07" iyy="2.81435593559762E-05" iyz="-4.61008261892541E-08" izz="1.07142640435101E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint2" type="continuous">
+    <origin xyz="0 0 0.058" rpy="0 0 0" />
+    <parent link="arm_link1" />
+    <child link="arm_link2" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="arm_link3">
+    <inertial>
+      <origin xyz="-8.51641701000994E-07 -0.002336880270288 0.0797540373287642" rpy="0 0 0" />
+      <mass value="0.0567754640950558" />
+      <inertia ixx="1.56884145488301E-05" ixy="2.75993987494388E-10" ixz="-1.03116086272983E-09" iyy="1.07078349204553E-05" iyz="-4.59865255738003E-08" izz="1.05000441530366E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link3.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint3" type="continuous">
+    <origin xyz="0.00131182888268896 0 0.135013627108461" rpy="0 0 0" />
+    <parent link="arm_link2" />
+    <child link="arm_link3" />
+    <axis xyz="0 1 0" />
+  </joint>
+  <link name="arm_link4">
+    <inertial>
+      <origin xyz="0.00781805906451505 -0.00125604649177635 0.0456392065838343" rpy="0 0 0" />
+      <mass value="0.0594646602999837" />
+      <inertia ixx="2.2386023438796E-05" ixy="-4.69572879335528E-08" ixz="-8.22165263867874E-07" iyy="1.21136250935906E-05" iyz="-1.48778839181729E-07" izz="1.59603598067002E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link4.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/arm_link4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="arm_joint4" type="continuous">
+    <origin xyz="0 0 0.11452" rpy="0 0 0" />
+    <parent link="arm_link3" />
+    <child link="arm_link4" />
+    <axis xyz="0 -1 0" />
+  </joint>
+  <link name="grip_link1">
+    <inertial>
+      <origin xyz="-0.000569172464044511 0.0024809153983204 0.0379584075444693" rpy="0 0 0" />
+      <mass value="0.00711846038549401" />
+      <inertia ixx="2.27439292126061E-06" ixy="-1.37945722459787E-17" ixz="-1.13871085920813E-17" iyy="2.02488440176187E-06" iyz="-5.04215809005632E-08" izz="2.68037970258112E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/grip_link1.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.776470588235294 0.756862745098039 0.737254901960784 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/grip_link1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="grip_joint1" type="continuous">
+    <origin xyz="0.00329999999999975 0.0131999999999993 0.0497499999999995" rpy="0 0 0" />
+    <parent link="arm_link4" />
+    <child link="grip_link1" />
+    <axis xyz="-1 0 0" />
+  </joint>
+  <link name="grip_link2">
+    <inertial>
+      <origin xyz="6.91724640443439E-05 -0.0024809153983173 -0.0379584075444691" rpy="0 0 0" />
+      <mass value="0.00711846038549403" />
+      <inertia ixx="2.27439292126062E-06" ixy="-1.38020980672138E-17" ixz="-1.13897312775966E-17" iyy="2.02488440176188E-06" iyz="-5.04215809005571E-08" izz="2.68037970258113E-07" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/grip_link2.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://car_with_arm/meshes/grip_link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="grip_joint2" type="continuous">
+    <origin xyz="0.00330000000000004 -0.0168000000000011 0.0497499999999999" rpy="-3.14159265358979 0 -3.14159265358979" />
+    <parent link="arm_link4" />
+    <child link="grip_link2" />
+    <axis xyz="-1 0 0" />
+  </joint>
+
+
+  <xacro:wheel_a name="rf" xyz="0.101 -0.1009 0.038" rpy="1.5707963267949 0 0" parent="base_link" />
+  <xacro:wheel_b name="rb" xyz="-0.101 -0.1009 0.038" rpy="1.5707963267949 0 0" parent="base_link" />
+  <xacro:wheel_a name="lb" xyz="-0.101 0.1009 0.038" rpy="1.5707963267949 0 3.14159265358979" parent="base_link" />
+  <xacro:wheel_b name="lf" xyz="0.101 0.1009 0.038" rpy="1.5707963267949 0 3.14159265358979" parent="base_link" />
+
+
+</robot>

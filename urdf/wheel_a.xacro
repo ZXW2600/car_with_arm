@@ -1,0 +1,262 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <!-- Define a macro with parameters prefix, parent, and reflect - partially with default values -->
+    <!-- <xacro:arm name="rf" xyz="0 0 0" rpy="0 0 0" parent="base_link" /> -->
+
+    <xacro:macro name="wheel_a" params="name parent xyz rpy ">
+        
+        <link name="wheel_${name}">
+            <inertial>
+                <origin xyz="2.42006207788747E-07 -5.8861711822733E-07 -0.002824522291559" rpy="0 0 0" />
+                <mass value="0.0520464900988903" />
+                <inertia ixx="8.17479063171265E-06" ixy="-4.92045375487271E-10" ixz="-4.1348698848227E-11" iyy="8.17709542934399E-06" iyz="9.34808062652542E-11" izz="9.53985920762607E-06" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/wheel_${name}.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/wheel_${name}.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="wheel_${name}_j" type="continuous">
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <parent link="${parent}" />
+            <child link="wheel_${name}" />
+            <axis xyz="0 0 1" />
+        </joint>
+        <link name="${name}_00">
+            <inertial>
+                <origin xyz="-2.77555756156289E-17 4.33680868994202E-19 -4.01068067645838E-14" rpy="0 0 0" />
+                <mass value="0.00414698579363862" />
+                <inertia ixx="4.3191104648677E-07" ixy="4.38678765301691E-24" ixz="1.58818677610181E-22" iyy="4.3191104648677E-07" iyz="-1.39136242802688E-22" izz="1.54383527151023E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_00.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_00.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_00_j" type="continuous">
+            <origin xyz="0 0.03 -0.00119999999998413" rpy="0 0.785398163397448 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_00" />
+            <axis xyz="0 0 1" />
+        </joint>
+        <link name="${name}_01">
+            <inertial>
+                <origin xyz="2.52008747203547E-10 -1.7819710984579E-10 -1.96864065327151E-09" rpy="0 0 0" />
+                <mass value="0.00414698579363856" />
+                <inertia ixx="4.31911045127187E-07" ixy="3.20333302272795E-17" ixz="8.84680385386202E-17" iyy="4.31911045149838E-07" iyz="-6.25561657903107E-17" izz="1.54383527218973E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_01.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_01.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_01_j" type="continuous">
+            <origin xyz="0.0212132034356112 0.0212132034355888 -0.00119999999998416" rpy="0.523598775598114 0.615479708670085 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_01" />
+            <axis xyz="0 0 1" />
+        </joint>
+        <link name="${name}_02">
+            <inertial>
+                <origin xyz="-1.38777878078145E-17 2.77555756156289E-17 -4.02178290670463E-14" rpy="0 0 0" />
+                <mass value="0.00414698579363858" />
+                <inertia ixx="4.31911046486765E-07" ixy="3.3432119964987E-23" ixz="1.36347440344677E-22" iyy="4.31911046486765E-07" iyz="6.61744490042422E-23" izz="1.54383527151021E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_02.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_02.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_02_j" type="continuous">
+            <origin xyz="0.03 0 -0.00119999999998413" rpy="0.785398163397448 0 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_02" />
+            <axis xyz="0 0 1" />
+        </joint>
+        <link name="${name}_03">
+            <inertial>
+                <origin xyz="1.03277732199647E-09 7.30283833405565E-10 -2.94174942738756E-09" rpy="0 0 0" />
+                <mass value="0.00414698579363854" />
+                <inertia ixx="4.3191104378071E-07" ixy="-5.38001248254694E-16" ixz="5.41776983643864E-16" iyy="4.31911044161134E-07" iyz="3.83094579076517E-16" izz="1.54383528292294E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_03.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_03.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_03_j" type="continuous">
+            <origin xyz="0.0212132034355888 -0.0212132034356113 -0.00119999999998413" rpy="0.523598775598114 -0.615479708670086 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_03" />
+            <axis xyz="0 0 1" />
+        </joint>
+        <link name="${name}_04">
+            <inertial>
+                <origin xyz="-2.08166817117217E-17 -4.02733402182776E-14 1.38777878078145E-17" rpy="0 0 0" />
+                <mass value="0.00414698579363856" />
+                <inertia ixx="4.31911046486763E-07" ixy="-1.10907064385563E-22" ixz="-2.06316106805948E-23" iyy="1.54383527151019E-07" iyz="-1.78671012311454E-22" izz="4.31911046486763E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_04.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_04.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_04_j" type="continuous">
+            <origin xyz="0 -0.03 -0.00119999999998413" rpy="2.35619449019235 0 -1.5707963267949" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_04" />
+            <axis xyz="0 1 0" />
+        </joint>
+        <link name="${name}_05">
+            <inertial>
+                <origin xyz="1.92832388945519E-10 -1.36353095481212E-10 -7.92970428209472E-09" rpy="0 0 0" />
+                <mass value="0.00414698579363844" />
+                <inertia ixx="4.31911024072949E-07" ixy="1.87555593834764E-17" ixz="2.72678480888995E-16" iyy="4.31911024086212E-07" iyz="-1.92813266304714E-16" izz="1.54383527190804E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_05.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_05.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_05_j" type="continuous">
+            <origin xyz="-0.0212132034356112 -0.0212132034355888 -0.00119999999998416" rpy="-0.523598775598114 -0.615479708670086 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_05" />
+            <axis xyz="0 0 1" />
+        </joint>
+        <link name="${name}_06">
+            <inertial>
+                <origin xyz="0 -1.38777878078145E-17 -4.01900734914307E-14" rpy="0 0 0" />
+                <mass value="0.00414698579363858" />
+                <inertia ixx="4.31911046486765E-07" ixy="-6.81151598466722E-24" ixz="-1.18223051152002E-22" iyy="4.31911046486765E-07" iyz="-7.94093388050907E-23" izz="1.54383527151021E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_06.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_06.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_06_j" type="continuous">
+            <origin xyz="-0.0299999999999999 0 -0.00119999999998407" rpy="-0.78539816339745 0 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_06" />
+            <axis xyz="0 0 -1" />
+        </joint>
+        <link name="${name}_07">
+            <inertial>
+                <origin xyz="-8.52783427207626E-10 -6.03008948329986E-10 6.66722815845233E-09" rpy="0 0 0" />
+                <mass value="0.00414698579363872" />
+                <inertia ixx="4.31911030891458E-07" ixy="-3.66815274192225E-16" ixz="1.01392424589851E-15" iyy="4.31911031150836E-07" iyz="7.16952558988518E-16" izz="1.54383527929157E-07" />
+            </inertial>
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_07.STL" />
+                </geometry>
+                <material name="">
+                    <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://car_with_arm/meshes/rf_07.STL" />
+                </geometry>
+            </collision>
+        </link>
+        <joint name="${name}_07_J" type="continuous">
+            <origin xyz="-0.0212132034355887 0.0212132034356113 -0.00119999999998413" rpy="-0.523598775598114 0.615479708670085 0" />
+            <parent link="wheel_${name}" />
+            <child link="${name}_07" />
+            <axis xyz="0 0 1" />
+        </joint>
+     
+    </xacro:macro>
+
+</robot>
