@@ -1,9 +1,18 @@
 <launch>
   <param name="robot_description" command="xacro '$(find car_with_arm)/urdf/car_with_arm.xacro' " />
+  <rosparam file="$(find car_with_arm)/config/car_whti_arm_joint.yaml" command="load"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch" />
   <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model car_with_arm" output="screen" />
+ 
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="car_with_arm" args="joint_state_controller joint1_position_controller joint2_position_controller joint3_position_controller joint4_position_controller grip1_effort_controller grip2_effort_controller"/>
 
-  <node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" />
-  <node name="fake_joint_calibration" pkg="rostopic" type="rostopic" args="pub /calibrated std_msgs/Bool true" />
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/car_with_arm/joint_states" />
+  </node>
 </launch>

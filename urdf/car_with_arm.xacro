@@ -9,11 +9,7 @@
   <xacro:include filename="wheel_a.xacro" />
   <xacro:include filename="wheel_b.xacro" />
   <link name="base_link">
-    <inertial>
-      <origin xyz="-0.0161520842614312 -0.00641681156155993 0.0888782755515328" rpy="0 0 0" />
-      <mass value="1.32550759355299" />
-      <inertia ixx="0.00606219444859075" ixy="-4.20802075465927E-06" ixz="-2.63249254295034E-06" iyy="0.00485351580132158" iyz="-3.34412403434482E-07" izz="0.0108486362146556" />
-    </inertial>
+
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -23,6 +19,15 @@
         <color rgba="1 1 1 1" />
       </material>
     </visual>
+
+  </link>
+
+  <link name="dummy">
+    <inertial>
+      <origin xyz="-0.0161520842614312 -0.00641681156155993 0.0888782755515328" rpy="0 0 0" />
+      <mass value="10" />
+      <inertia ixx="0.00606219444859075" ixy="-4.20802075465927E-06" ixz="-2.63249254295034E-06" iyy="0.00485351580132158" iyz="-3.34412403434482E-07" izz="0.0108486362146556" />
+    </inertial>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
@@ -31,6 +36,11 @@
     </collision>
   </link>
 
+  <joint name="dummy_joint" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="dummy" />
+  </joint>
 
   <link name="arm_link1">
     <inertial>
@@ -59,6 +69,7 @@
     <parent link="base_link" />
     <child link="arm_link1" />
     <axis xyz="0 0 1" />
+    <limit lower="-1.57" upper="1.57" effort="200" velocity="2.0" />
   </joint>
   <link name="arm_link2">
     <inertial>
@@ -87,6 +98,7 @@
     <parent link="arm_link1" />
     <child link="arm_link2" />
     <axis xyz="0 1 0" />
+    <limit lower="-1.57" upper="1.57" effort="200" velocity="2.0" />
   </joint>
   <link name="arm_link3">
     <inertial>
@@ -115,6 +127,7 @@
     <parent link="arm_link2" />
     <child link="arm_link3" />
     <axis xyz="0 1 0" />
+    <limit lower="-1.57" upper="1.57" effort="200" velocity="2.0" />
   </joint>
   <link name="arm_link4">
     <inertial>
@@ -143,6 +156,8 @@
     <parent link="arm_link3" />
     <child link="arm_link4" />
     <axis xyz="0 -1 0" />
+    <limit lower="-1.57" upper="1.57" effort="200" velocity="2.0" />
+
   </joint>
   <link name="grip_link1">
     <inertial>
@@ -171,6 +186,8 @@
     <parent link="arm_link4" />
     <child link="grip_link1" />
     <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0.7" effort="2" velocity="2.0" />
+
   </joint>
   <link name="grip_link2">
     <inertial>
@@ -199,6 +216,8 @@
     <parent link="arm_link4" />
     <child link="grip_link2" />
     <axis xyz="-1 0 0" />
+    <limit lower="0" upper="0.7" effort="2" velocity="2.0" />
+
   </joint>
 
 
@@ -206,6 +225,80 @@
   <xacro:wheel_b name="rb" xyz="-0.101 -0.1009 0.038" rpy="1.5707963267949 0 0" parent="base_link" />
   <xacro:wheel_a name="lb" xyz="-0.101 0.1009 0.038" rpy="1.5707963267949 0 3.14159265358979" parent="base_link" />
   <xacro:wheel_b name="lf" xyz="0.101 0.1009 0.038" rpy="1.5707963267949 0 3.14159265358979" parent="base_link" />
+
+
+  <transmission name="arm_joint1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arm_joint1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_actuator_1">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="arm_joint2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arm_joint2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_actuator_2">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+
+  <transmission name="arm_joint3_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arm_joint3">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_actuator_3">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="arm_joint4_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arm_joint4">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm_actuator_4">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="grip_joint1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="grip_joint1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="grip_actuator_1">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="grip_joint2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="grip_joint2">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="grip_actuator_2">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>car_with_arm</robotNamespace>
+    </plugin>
+  </gazebo>
 
 
 </robot>
